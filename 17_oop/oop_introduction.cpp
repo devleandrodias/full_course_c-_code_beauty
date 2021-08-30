@@ -7,9 +7,11 @@ class YouTubeChannel
 {
 private:
   string Name;
-  string OwnerName;
   int SubscribersCount;
   list<string> PublishedVideoTitles;
+
+protected:
+  string OwnerName;
 
 public:
   YouTubeChannel(string name, string ownerName)
@@ -50,6 +52,19 @@ public:
   }
 };
 
+class CookingYouTubeChannel : public YouTubeChannel
+{
+public:
+  CookingYouTubeChannel(string name, string ownerName) : YouTubeChannel(name, ownerName)
+  {
+  }
+
+  void Pratice()
+  {
+    cout << OwnerName << " is practicing cooking, learning new recipes, experimenting with spices..." << endl;
+  }
+};
+
 int main()
 {
   system("clear");
@@ -62,11 +77,25 @@ int main()
 
   ytChannel.PublishVideo("HTML & CSS Video 1");
   ytChannel.Subscribe();
-
   ytChannel.PublishVideo("C++ OOP Video 1");
+
   ytChannel.Unsubcribe();
 
   ytChannel.GetInfoChannel();
+
+  CookingYouTubeChannel cookingYtChannel("Amy's Kitchen", "Amy");
+
+  cookingYtChannel.Subscribe();
+  cookingYtChannel.Subscribe();
+  cookingYtChannel.Subscribe();
+
+  cookingYtChannel.PublishVideo("Apple pie");
+  cookingYtChannel.PublishVideo("Chocolate cake");
+
+  cookingYtChannel.Unsubcribe();
+
+  cookingYtChannel.Pratice();
+  cookingYtChannel.GetInfoChannel();
 
   return 0;
 }
